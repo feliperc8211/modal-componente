@@ -1,18 +1,32 @@
-import React from 'react'
+import React, { useRef, useEffect} from 'react'
 import './Modal.css'
 
 
 
 
-
-    
-
-
-const Modal = ({ isOpen, closeModal, children, modalRef }) => {
+const Modal = ({ isOpen, closeModal, children }) => {
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
     }
+
+    
+    const modalRef = useRef()
+
+    useEffect (() => {
+        let handler = (event) =>{
+        if (!modalRef.current.contains(event.target)) {
+        setIsOpenModal(false);
+        }
+        
+      }
+      document.addEventListener("mousedown", handler);
+  
+      return () =>{
+        document.removeEventListener("mousedown", handler)
+      }
+    });
+
 
     return (
         <div className={`modal ${isOpen && 'modal-open'}`} onClick={closeModal}>
