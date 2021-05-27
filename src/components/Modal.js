@@ -11,21 +11,22 @@ const Modal = ({ isOpen, closeModal, children }) => {
     }
 
     
-    const modalRef = useRef()
+    let modalRef = useRef()
 
-    useEffect (() => {
-        let handler = (event) =>{
+    let handler = (event) =>{
         if (!modalRef.current.contains(event.target)) {
-        setIsOpenModal(false);
-        }
-        
+        closeModal(false);
+        } 
       }
-      document.addEventListener("mousedown", handler);
+    
+      useEffect (() => {
+        document.addEventListener("mousedown", handler)
   
-      return () =>{
+        return () =>{
         document.removeEventListener("mousedown", handler)
-      }
-    });
+         }
+        }
+       );
 
 
     return (
@@ -37,12 +38,7 @@ const Modal = ({ isOpen, closeModal, children }) => {
                 </div>
                 <div className="modal-body">
                     {children}
-
-                    
-            <hr></hr>
-            <a href="http://www.google.cl"> click aqui </a>
-            
-            
+                
 
                 </div>
                  

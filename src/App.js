@@ -1,10 +1,12 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import Modal from './components/Modal';
 import './App.css';
 
 function App() {
 
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  
+
+  const [isOpenModal, setIsOpenModal]  = useState(false);
 
 
   const closeModal = () => {
@@ -15,7 +17,7 @@ function App() {
     setIsOpenModal(true);
   }
 
-
+  
 
   return (
     
@@ -24,9 +26,15 @@ function App() {
         Open Modal
       </button>
       < Modal 
+        
+        
+      href={"http://www.google.cl"}
+
       isOpen={isOpenModal}
       closeModal={closeModal} 
-      />  
+      
+      
+      /> 
      
     </div>
     
