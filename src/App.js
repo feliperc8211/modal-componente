@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useState , useEffect, useRef } from 'react';
 import Modal from './components/Modal';
 import './App.css';
 
@@ -14,6 +14,24 @@ function App() {
   const closeModal = () => {
     setIsOpenModal(false);
   }
+
+
+
+  let modalRef = useRef()
+
+  useEffect (() => {
+      let handler = (event) =>{
+      if (!modalRef.current.contains(event.target)) {
+        setIsOpenModal(false);
+      }
+      
+    }
+    document.addEventListener("mousedown", handler);
+
+    return () =>{
+      document.removeEventListener("mousedown", handler)
+    }
+  });
 
 
   return (
